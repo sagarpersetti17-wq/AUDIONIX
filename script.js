@@ -392,12 +392,23 @@ async function connectAudio() {
 
     audioSource = audioContext.createMediaStreamSource(audioStream);
 
+    // --- ADDED: Dedicated input pre-amplification ---
+    const inputBoostNode = audioContext.createGain();
+    inputBoostNode.gain.value = 5.0; // Adjust this multiplier (e.g., 3.0 to 8.0) to boost raw mic input
+
     analyser = audioContext.createAnalyser();
 
     analyser.fftSize = 2048;
     analyser.smoothingTimeConstant = 0.75;
 
-    audioSource.connect(analyser);
+    // Route microphone -> input boost -> analyser & effects
+    audioSource.connect(inputBoostNode);
+    inputBoostNode.connect(analyser);
+    
+    // Pass the boosted signal into your effects chain instead of raw source
+    effectInput = audioContext.createGain();
+    inputBoostNode.connect(effectInput);
+    
     setupGuitarEffects();
 
     connectAudioBtn.disabled = true;
