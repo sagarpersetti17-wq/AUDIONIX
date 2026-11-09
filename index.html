@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101113">
+  <title>AUDIONIX | Professional Audio Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">A</div>
+      <div>
+        <div class="brand-name">AUDIONIX</div>
+        <div class="brand-sub">STUDIO</div>
+      </div>
+    </div>
+
+    <div class="sidebar-label">WORKSPACE</div>
+
+    <nav class="main-nav">
+      <button class="nav-item active" data-view="studio">
+        <span class="nav-icon">◈</span> Studio
+      </button>
+      <button class="nav-item" data-view="rig">
+        <span class="nav-icon">♬</span> Guitar Rig
+      </button>
+      <button class="nav-item" data-view="looper">
+        <span class="nav-icon">↻</span> Loop Station
+      </button>
+      <button class="nav-item" data-view="mixer">
+  <span class="nav-icon">☷</span> Mixer
+</button>
+
+<button class="nav-item" data-view="effects">
+  <span class="nav-icon">✧</span> Effects Rack
+</button>
+
+<button class="nav-item" data-view="projects">
+        <span class="nav-icon">▣</span> Projects
+      </button>
+    </nav>
+
+    <div class="sidebar-label library-label">LIBRARY</div>
+
+    <nav class="main-nav">
+      <button class="nav-item" data-view="presets">
+        <span class="nav-icon">✧</span> Presets
+      </button>
+      <button class="nav-item" data-view="settings">
+        <span class="nav-icon">⚙</span> Settings
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="connection-indicator">
+        <span class="status-dot"></span>
+        <span>Audio engine not connected</span>
+      </div>
+      <div class="version">AUDIONIX STUDIO · 01</div>
+    </div>
+  </aside>
+
+  <!-- MAIN AREA -->
+  <main class="main-area">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu" id="menuBtn">☰</button>
+        <div>
+          <div class="breadcrumb">WORKSPACE / <span id="breadcrumbPage">STUDIO</span></div>
+          <div class="project-title">Untitled Session <span class="unsaved-dot"></span></div>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="engine-status">
+          <span class="status-dot"></span>
+          OFFLINE
+        </div>
+        <button class="top-button" id="saveBtn">↧ <span>Save</span></button>
+        <button class="user-avatar">S</button>
+      </div>
+    </header>
+
+    <!-- TRANSPORT BAR -->
+    <section class="transport-bar">
+      <div class="transport-left">
+        <button class="transport-button" id="stopBtn" title="Stop">■</button>
+        <button class="play-button" id="playBtn" title="Play">▶</button>
+        <button class="transport-button" id="recordBtn" title="Record">●</button>
+        <div class="transport-divider"></div>
+        <div class="time-display" id="timeDisplay">00:00:00</div>
+      </div>
+
+      <div class="transport-right">
+        <div class="bpm-control">
+          <span class="control-label">BPM</span>
+          <button id="bpmDown">−</button>
+          <span id="bpmValue">120</span>
+          <button id="bpmUp">+</button>
+        </div>
+        <div class="time-signature">
+          <span class="control-label">TIME</span>
+          <span>4/4</span>
+        </div>
+        <div class="master-indicator">
+          <span class="control-label">MASTER</span>
+          <div class="meter"><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <div class="content-area">
+
+      <!-- STUDIO VIEW -->
+      <section class="page-view active" id="view-studio">
+
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow">YOUR CREATIVE SPACE</div>
+            <h1>Make something <span>loud.</span></h1>
+            <p>Your instruments. Your sound. Your studio.</p>
+          </div>
+          <button class="new-session-button" id="newSessionBtn">＋ New session</button>
+        </div>
+
+        <div class="studio-grid">
+
+          <!-- GUITAR RIG -->
+          <section class="panel rig-panel">
+            <div class="panel-header">
+              <div>
+                <div class="panel-kicker">01 / SIGNAL CHAIN</div>
+                <h2>Guitar Rig</h2>
+              </div>
+              <button class="text-button" data-goto="rig">OPEN RIG ↗</button>
+            </div>
+
+            <div class="signal-line">
+              <span class="signal-dot"></span>
+              <span>INPUT</span>
+              <div class="signal-track"></div>
+              <span class="signal-dot"></span>
+              <span>OUTPUT</span>
+            </div>
+
+            <div class="pedal-row">
+
+              <button class="pedal" data-pedal="gate">
+                <span class="pedal-led"></span>
+                <span class="pedal-name">ZNR</span>
+                <span class="pedal-type">NOISE GATE</span>
+                <span class="pedal-knob"></span>
+                <span class="pedal-switch"></span>
+                <span class="pedal-state">ON</span>
+              </button>
+
+              <button class="pedal pedal-drive" data-pedal="drive">
+                <span class="pedal-led"></span>
+                <span class="pedal-name">DRIVE</span>
+                <span class="pedal-type">OVERDRIVE</span>
+                <span class="pedal-knob"></span>
+                <span class="pedal-switch"></span>
+                <span class="pedal-state">ON</span>
+              </button>
+
+              <button class="pedal pedal-amp" data-pedal="amp">
+                <span class="pedal-led"></span>
+                <span class="pedal-name">AMP</span>
+                <span class="pedal-type">AMPLIFIER</span>
+                <span class="pedal-knob"></span>
+                <span class="pedal-switch"></span>
+                <span class="pedal-state">ON</span>
+              </button>
+
+              <button class="pedal pedal-delay" data-pedal="delay">
+                <span class="pedal-led"></span>
+                <span class="pedal-name">DLY</span>
+                <span class="pedal-type">DELAY</span>
+                <span class="pedal-knob"></span>
+                <span class="pedal-switch"></span>
+                <span class="pedal-state">ON</span>
+              </button>
+
+              <button class="pedal pedal-reverb" data-pedal="reverb">
+                <span class="pedal-led"></span>
+                <span class="pedal-name">RV B</span>
+                <span class="pedal-type">REVERB</span>
+                <span class="pedal-knob"></span>
+                <span class="pedal-switch"></span>
+                <span class="pedal-state">ON</span>
+              </button>
+
+            </div>
+
+            <div class="rig-footer">
+              <span>5 EFFECTS IN CHAIN</span>
+              <span class="rig-preset">DEFAULT RIG ▾</span>
+            </div>
+          </section>
+
+          <!-- INPUT PANEL -->
+          <section class="panel input-panel">
+            <div class="panel-header">
+              <div>
+                <div class="panel-kicker">02 / INPUT CONFIGURATION</div>
+                <h2>Inputs</h2>
+              </div>
+              <span class="input-badge">SETUP</span>
+            </div>
+
+            <div class="input-option">
+              <div class="input-symbol">🎸</div>
+              <div class="input-info">
+                <strong>Guitar</strong>
+                <span>Instrument input</span>
+              </div>
+              <span class="input-state">READY TO SET UP</span>
+            </div>
+
+            <div class="input-option">
+              <div class="input-symbol">🎤</div>
+              <div class="input-info">
+                <strong>Microphone</strong>
+                <span>Vocal input</span>
+              </div>
+              <span class="input-state">READY TO SET UP</span>
+            </div>
+
+            <div class="input-option">
+              <div class="input-symbol">🎹</div>
+              <div class="input-info">
+                <strong>Keyboard</strong>
+                <span>MIDI / Audio</span>
+              </div>
+              <span class="input-state">READY TO SET UP</span>
+            </div>
+
+            <div class="audio-input-controls">
+
+              <label for="audioDevice">INPUT DEVICE</label>
+
+              <select id="audioDevice">
+                <option value="">Detecting devices...</option>
+              </select>
+
+            <div class="audio-input-buttons">
+              <button id="connectAudioBtn">CONNECT INPUT</button>
+              <button id="disconnectAudioBtn" disabled>DISCONNECT</button>
+            </div>
+
+            <div class="live-level">
+            <div class="level-label">
+              <span>INPUT LEVEL</span>
+              <span id="levelValue">-∞ dB</span>
+           </div>
+
+           <div class="level-track">
+           <div id="levelBar"></div>
+           </div>
+           </div>
+
+           <div class="input-footer" id="audioStatus">
+            <span class="status-dot"></span>
+            Audio input disconnected
+           </div>
+
+          </div>
+          </section>
+
+          <!-- LOOP STATION -->
+          <section class="panel loop-panel">
+            <div class="panel-header">
+              <div>
+                <div class="panel-kicker">03 / LIVE PERFORMANCE</div>
+                <h2>Loop Station</h2>
+              </div>
+              <button class="text-button" data-goto="looper">OPEN LOOPER ↗</button>
+            </div>
+
+            <div class="loop-tracks">
+              <div class="loop-track">
+                <span class="track-number">01</span>
+                <span class="track-color guitar-color"></span>
+                <strong>Guitar Rhythm</strong>
+                <span class="track-duration">--:--</span>
+                <span class="track-state">EMPTY</span>
+              </div>
+              <div class="loop-track">
+                <span class="track-number">02</span>
+                <span class="track-color bass-color"></span>
+                <strong>Bass</strong>
+                <span class="track-duration">--:--</span>
+                <span class="track-state">EMPTY</span>
+              </div>
+              <div class="loop-track">
+                <span class="track-number">03</span>
+                <span class="track-color vocal-color"></span>
+                <strong>Vocals</strong>
+                <span class="track-duration">--:--</span>
+                <span class="track-state">EMPTY</span>
+              </div>
+              <div class="loop-track">
+                <span class="track-number">04</span>
+                <span class="track-color keys-color"></span>
+                <strong>Keyboard</strong>
+                <span class="track-duration">--:--</span>
+                <span class="track-state">EMPTY</span>
+              </div>
+            </div>
+
+            <div class="loop-footer">
+              <span>4 TRACKS</span>
+              <span>NO RECORDINGS YET</span>
+            </div>
+          </section>
+
+          <!-- MIXER -->
+          <section class="panel mixer-panel">
+            <div class="panel-header">
+              <div>
+                <div class="panel-kicker">04 / OUTPUT CONTROL</div>
+                <h2>Studio Mixer</h2>
+              </div>
+              <button class="text-button" data-goto="mixer">OPEN MIXER ↗</button>
+            </div>
+
+            <div class="mixer-channels">
+              <div class="channel">
+                <div class="channel-meter"><span></span></div>
+                <div class="channel-fader"><div></div></div>
+                <span>GUITAR</span>
+              </div>
+              <div class="channel">
+                <div class="channel-meter"><span></span></div>
+                <div class="channel-fader"><div></div></div>
+                <span>BASS</span>
+              </div>
+              <div class="channel">
+                <div class="channel-meter"><span></span></div>
+                <div class="channel-fader"><div></div></div>
+                <span>VOCALS</span>
+              </div>
+              <div class="channel">
+                <div class="channel-meter"><span></span></div>
+                <div class="channel-fader"><div></div></div>
+                <span>KEYS</span>
+              </div>
+              <div class="channel">
+                <div class="channel-meter"><span></span></div>
+                <div class="channel-fader"><div></div></div>
+                <span>MASTER</span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="bottom-note">
+          <span>RIGCRAFT STUDIO</span>
+          <span>BUILT FOR MUSICIANS, BY MUSICIANS.</span>
+          <span>VERSION 0.1.0</span>
+        </div>
+
+      </section>
+
+      <!-- OTHER VIEWS -->
+      <section class="page-view secondary-view" id="view-rig">
+        <div class="eyebrow">SIGNAL PROCESSING</div>
+        <h1>Guitar <span>Rig.</span></h1>
+        <p class="page-description">Build your tone. Shape your sound.</p>
+        <div class="large-pedal-grid" id="largePedalGrid"></div>
+
+<div class="panel effect-controls">
+  <div class="panel-header">
+    <div>
+      <div class="panel-kicker">LIVE SIGNAL PROCESSING</div>
+      <h2>Effect Parameters</h2>
+    </div>
+    <span class="input-badge">REAL TIME</span>
+  </div>
+
+  <div class="effect-control">
+    <label for="driveAmount">OVERDRIVE</label>
+    <input type="range" id="driveAmount" min="0" max="100" value="45">
+    <span id="driveValue">45%</span>
+  </div>
+
+  <div class="effect-control">
+    <label for="bassAmount">BASS</label>
+    <input type="range" id="bassAmount" min="-12" max="12" value="0">
+    <span id="bassValue">0 dB</span>
+  </div>
+
+  <div class="effect-control">
+    <label for="midAmount">MID</label>
+    <input type="range" id="midAmount" min="-12" max="12" value="0">
+    <span id="midValue">0 dB</span>
+  </div>
+
+  <div class="effect-control">
+    <label for="trebleAmount">TREBLE</label>
+    <input type="range" id="trebleAmount" min="-12" max="12" value="0">
+    <span id="trebleValue">0 dB</span>
+  </div>
+
+  <div class="effect-control">
+    <label for="outputAmount">OUTPUT LEVEL</label>
+    <input type="range" id="outputAmount" min="0" max="100" value="70">
+    <span id="outputValue">70%</span>
+  </div>
+
+<div class="effect-control">
+  <label for="delayAmount">DELAY</label>
+  <input type="range" id="delayAmount" min="0" max="100" value="0">
+  <span id="delayValue">0%</span>
+</div>
+
+<div class="effect-control">
+  <label for="reverbAmount">REVERB</label>
+  <input type="range" id="reverbAmount" min="0" max="100" value="0">
+  <span id="reverbValue">0%</span>
+</div>
+
+  <button id="monitorBtn" class="monitor-button">
+    ENABLE AUDIO MONITORING
+   </button>
+
+   <div class="test-signal-controls">
+   <button id="startTestSignal">START TEST SIGNAL</button>
+   <button id="stopTestSignal" disabled>STOP TEST SIGNAL</button>
+   </div>
+
+  <p class="monitor-note">
+    Connect headphones before enabling monitoring.
+  </p>
+</div>
+        <div class="empty-panel">
+          <span>＋</span>
+          <strong>Effect library</strong>
+          <p>More effects and signal routing will be added in the next stage.</p>
+        </div>
+      </section>
+
+  <section class="page-view secondary-view" id="view-looper">
+
+  <div class="eyebrow">MULTITRACK RECORDING</div>
+  <h1>Loop <span>Station.</span></h1>
+  <p class="page-description">Build your sound, one layer at a time.</p>
+
+  <div class="panel loop-recorder">
+
+    <div class="panel-header">
+      <div>
+        <div class="panel-kicker">MULTITRACK PERFORMANCE</div>
+        <h2>Loop Station</h2>
+      </div>
+      <span class="input-badge">4 TRACKS</span>
+    </div>
+
+    <div class="loop-status">
+      <span class="status-dot"></span>
+      <span id="loopStatus">Ready to record</span>
+    </div>
+
+        <!-- TEMPO SYNC CONTROLS -->
+    <div class="tempo-sync-panel">
+
+      <div class="tempo-sync-heading">
+        <span class="track-info-label">TEMPO & SYNCHRONISATION</span>
+        <span class="sync-indicator" id="syncStatus">SYNC READY</span>
+      </div>
+
+      <div class="tempo-sync-controls">
+
+        <div class="sync-control">
+          <label for="loopBars">LOOP LENGTH</label>
+          <select id="loopBars">
+            <option value="1">1 BAR</option>
+            <option value="2" selected>2 BARS</option>
+            <option value="4">4 BARS</option>
+            <option value="8">8 BARS</option>
+          </select>
+        </div>
+
+        <div class="sync-control">
+          <label>PROJECT TEMPO</label>
+          <strong><span id="loopBpmValue">120</span> BPM</strong>
+        </div>
+
+        <div class="sync-control">
+          <label>METRONOME</label>
+          <button id="metronomeBtn" class="sync-toggle">
+            OFF
+          </button>
+        </div>
+
+        <div class="sync-control">
+          <label>COUNT-IN</label>
+          <button id="countInBtn" class="sync-toggle active">
+            ON
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="count-in-display" id="countInDisplay" aria-live="polite">
+      READY WHEN YOU ARE
+    </div>
+
+    <!-- STAGE 7: DAW TIMELINE -->
+<div class="timeline-panel">
+
+  <div class="timeline-heading">
+    <div>
+      <span class="track-info-label">ARRANGEMENT VIEW</span>
+      <h3>Multitrack Timeline</h3>
+    </div>
+
+    <span class="timeline-live-status" id="timelineStatus">
+      READY
+    </span>
+  </div>
+  
+  <!-- STAGE 11: TIMELINE EDITOR -->
+  <div class="timeline-editor">
+
+    <div class="timeline-editor-info">
+      <span class="track-info-label">SELECTED CLIP</span>
+      <strong id="selectedClipName">No clip selected</strong>
+    </div>
+
+    <div class="timeline-trim-controls">
+
+      <label>
+        TRIM START (SECONDS)
+        <input
+          type="number"
+          id="trimStart"
+          min="0"
+          step="0.1"
+          value="0">
+      </label>
+
+      <label>
+        TRIM END (SECONDS)
+        <input
+          type="number"
+          id="trimEnd"
+          min="0"
+          step="0.1"
+          value="0">
+      </label>
+
+      <button id="applyTrimBtn" disabled>
+        APPLY TRIM
+      </button>
+
+    </div>
+
+    <div class="timeline-clip-tools">
+  <div class="timeline-split-control">
+    <label for="splitTime">SPLIT POSITION (SECONDS)</label>
+    <input
+      type="number"
+      id="splitTime"
+      min="0"
+      step="0.01"
+      placeholder="e.g. 5.00"
+    >
+    <button type="button" id="usePlayheadBtn">
+      USE PLAYHEAD
+    </button>
+  </div>
+
+  <div class="timeline-clip-actions">
+    <button type="button" id="splitClipBtn" disabled>
+      SPLIT CLIP
+    </button>
+
+    <button type="button" id="deleteClipBtn" disabled>
+      DELETE CLIP
+    </button>
+
+    <button type="button" id="undoClipBtn" disabled>
+      UNDO
+    </button>
+  </div>
+</div>
+
+    <p class="timeline-editor-note">
+      Select a recorded waveform to edit its beginning or ending.
+    </p>
+
+  </div>
+
+  <!-- STAGE 14: AUTOMATION CONTROLS -->
+  <div class="automation-toolbar" id="automationToolbar">
+
+    <div class="automation-group">
+      <span class="track-info-label">AUTOMATION LANE</span>
+      <div class="automation-lane-switch">
+        <button type="button" id="automationVolumeBtn" class="active">VOLUME</button>
+        <button type="button" id="automationPanBtn">PAN</button>
+      </div>
+    </div>
+
+    <div class="automation-group">
+      <span class="track-info-label">TARGET TRACK</span>
+      <strong id="automationTargetName">None</strong>
+    </div>
+
+    <div class="automation-group">
+      <label for="automationFadeLength" class="track-info-label">FADE LENGTH (SEC)</label>
+      <input type="number" id="automationFadeLength" min="0.1" step="0.1" value="2">
+    </div>
+
+    <div class="automation-actions">
+      <button type="button" id="automationEditBtn">EDIT POINTS: OFF</button>
+      <button type="button" id="fadeInBtn">FADE IN</button>
+      <button type="button" id="fadeOutBtn">FADE OUT</button>
+      <button type="button" id="clearAutomationBtn">CLEAR LANE</button>
+    </div>
+
+    <p class="timeline-editor-note">
+      Turn on EDIT POINTS, then click a track lane to add a point, drag a point to move it,
+      and double-click or right-click a point to delete it.
+    </p>
+
+  </div>
+
+  <div class="timeline-scroll" id="timelineScroll">
+    <div class="timeline-content" id="timelineContent">
+
+      <div class="timeline-ruler" id="timelineRuler"></div>
+
+      <div class="timeline-track-area" id="timelineTrackArea"></div>
+
+    </div>
+  </div>
+
+  <div class="timeline-footer">
+    <span>PROJECT LENGTH: <strong id="timelineLength">NOT SET</strong></span>
+    <span>4/4 TIME</span>
+  </div>
+
+</div>
+
+    <div class="multitrack-info">
+      <div>
+        <span class="track-info-label">LOOP LENGTH</span>
+        <strong id="loopDuration">Not set</strong>
+      </div>
+      <div>
+        <span class="track-info-label">ARMED TRACK</span>
+        <strong id="armedTrackName">Guitar Rhythm</strong>
+      </div>
+      <div>
+        <span class="track-info-label">TRACKS USED</span>
+        <strong id="tracksUsed">0 / 4</strong>
+      </div>
+    </div>
+
+    <div class="multitrack-list" id="multitrackList"></div>
+
+    <div class="loop-time">
+      <span id="recordTime">00:00</span>
+      <span id="loopTimerLabel">RECORDING TIME</span>
+    </div>
+
+    <div class="loop-controls multitrack-controls">
+      <button id="loopRecordBtn" class="loop-record">
+        RECORD LAYER
+      </button>
+
+      <button id="loopStopBtn" disabled>
+        STOP
+      </button>
+
+      <button id="loopPlayBtn" disabled>
+        PLAY ALL
+      </button>
+
+      <button id="loopStopPlaybackBtn" disabled>
+        STOP ALL
+      </button>
+
+      <button id="loopClearBtn" disabled>
+        CLEAR ARMED TRACK
+      </button>
+    </div>
+
+    <p class="multitrack-note">
+      The first recording sets the loop length. Later layers automatically
+      record for the same duration.
+    </p>
+
+  </div>
+
+</section>
+
+      <section class="page-view secondary-view" id="view-mixer">
+        <div class="eyebrow">AUDIO CONTROL / STAGE 08</div>
+        <h1>Studio <span>Mixer.</span></h1>
+        <p class="page-description">Balance every instrument. Shape the stereo field.</p>
+
+        <div class="mixer-console-panel panel">
+          <div class="mixer-console-heading">
+  <div>
+    <div class="panel-kicker">MULTITRACK OUTPUT</div>
+    <h2>Channel Console</h2>
+  </div>
+
+  <div class="mixer-heading-controls">
+  <button id="mixerPlaybackBtn" class="mixer-playback-button" disabled>
+    ▶ PLAY
+  </button>
+
+  <button id="mixerExportBtn" class="mixer-playback-button">
+    ↓ EXPORT WAV
+  </button>
+
+  <span class="input-badge" id="mixerTrackCount">0 / 4 ACTIVE</span>
+</div>
+</div>
+
+          <div class="mixer-console" id="mixerChannels"></div>
+
+          <div class="mixer-master">
+            <div class="master-topline">
+              <div>
+                <span class="panel-kicker">MAIN OUTPUT</span>
+                <h3>MASTER</h3>
+              </div>
+              <strong id="masterVolumeValue">85%</strong>
+            </div>
+            <input
+              type="range"
+              id="masterVolume"
+              min="0"
+              max="100"
+              value="85"
+              aria-label="Master output volume">
+            <div class="master-scale">
+              <span>−∞</span>
+              <span>OUTPUT LEVEL</span>
+              <span>0 dB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mixer-footer-note">
+          <span>4 CHANNELS</span>
+          <span>STEREO MIX BUS</span>
+          <span>LIVE PLAYBACK CONTROL</span>
+        </div>
+      </section>
+
+      
+<!-- STAGE 12: TRACK EFFECTS RACK -->
+<section class="page-view secondary-view" id="view-effects">
+
+  <div class="eyebrow">STAGE 12 / TRACK PROCESSING</div>
+  <h1>Effects <span>Rack.</span></h1>
+  <p class="page-description">
+    Shape every track independently. Build your signature sound.
+  </p>
+
+  <div class="panel track-effects-panel">
+
+    <div class="panel-header">
+      <div>
+        <div class="panel-kicker">TRACK SELECTION</div>
+        <h2>Choose a Track</h2>
+      </div>
+      <span class="input-badge">4 CHANNELS</span>
+    </div>
+
+    <div class="effects-track-selector" id="effectsTrackSelector">
+
+      <button class="effects-track-button active" data-track="0">
+        🎸 GUITAR
+      </button>
+
+      <button class="effects-track-button" data-track="1">
+        BASS
+      </button>
+
+      <button class="effects-track-button" data-track="2">
+        🎤 VOCALS
+      </button>
+
+      <button class="effects-track-button" data-track="3">
+        🎹 KEYBOARD
+      </button>
+
+    </div>
+
+    <div class="effects-selected-track">
+      <span class="track-info-label">EDITING TRACK</span>
+      <strong id="effectsSelectedTrackName">Guitar Rhythm</strong>
+      <span id="effectsTrackStatus">EFFECTS READY</span>
+    </div>
+
+</div>
+
+  <div class="effects-rack-grid">
+
+    <!-- EQUALIZER -->
+    <div class="panel rack-effect" data-effect="eq">
+
+      <div class="rack-effect-header">
+        <div>
+          <span class="panel-kicker">01 / FREQUENCY CONTROL</span>
+          <h2>Equalizer</h2>
+        </div>
+
+        <label class="effect-power">
+          <input type="checkbox" id="eqEnabled">
+          <span>ON</span>
+        </label>
+      </div>
+
+      <div class="effect-control">
+        <label for="eqLow">LOW</label>
+        <input type="range" id="eqLow" min="-12" max="12" value="0">
+        <span id="eqLowValue">0 dB</span>
+      </div>
+
+      <div class="effect-control">
+        <label for="eqMid">MID</label>
+        <input type="range" id="eqMid" min="-12" max="12" value="0">
+        <span id="eqMidValue">0 dB</span>
+      </div>
+
+      <div class="effect-control">
+        <label for="eqHigh">HIGH</label>
+        <input type="range" id="eqHigh" min="-12" max="12" value="0">
+        <span id="eqHighValue">0 dB</span>
+      </div>
+
+    </div>
+
+    <!-- COMPRESSOR -->
+    <div class="panel rack-effect" data-effect="compressor">
+
+      <div class="rack-effect-header">
+        <div>
+          <span class="panel-kicker">02 / DYNAMIC CONTROL</span>
+          <h2>Compressor</h2>
+        </div>
+
+        <label class="effect-power">
+          <input type="checkbox" id="compressorEnabled">
+          <span>ON</span>
+        </label>
+      </div>
+
+      <div class="effect-control">
+        <label for="compThreshold">THRESHOLD</label>
+        <input type="range" id="compThreshold" min="-60" max="0" value="-24">
+        <span id="compThresholdValue">-24 dB</span>
+      </div>
+
+      <div class="effect-control">
+        <label for="compRatio">RATIO</label>
+        <input type="range" id="compRatio" min="1" max="20" value="4">
+        <span id="compRatioValue">4:1</span>
+      </div>
+
+      <div class="effect-control">
+        <label for="compAttack">ATTACK</label>
+        <input type="range" id="compAttack" min="1" max="100" value="10">
+        <span id="compAttackValue">10 ms</span>
+      </div>
+
+      <div class="effect-control">
+        <label for="compRelease">RELEASE</label>
+        <input type="range" id="compRelease" min="10" max="1000" value="150">
+        <span id="compReleaseValue">150 ms</span>
+      </div>
+
+    </div>
+
+    <!-- REVERB -->
+    <div class="panel rack-effect" data-effect="reverb">
+
+      <div class="rack-effect-header">
+        <div>
+          <span class="panel-kicker">03 / SPACE & AMBIENCE</span>
+          <h2>Reverb</h2>
+        </div>
+
+        <label class="effect-power">
+          <input type="checkbox" id="rackReverbEnabled">
+          <span>ON</span>
+        </label>
+      </div>
+
+      <div class="effect-control">
+        <label for="rackReverbMix">WET / DRY</label>
+        <input type="range" id="rackReverbMix" min="0" max="100" value="25">
+        <span id="rackReverbMixValue">25%</span>
+      </div>
+
+      <div class="effect-control">
+        <label for="rackReverbDecay">DECAY</label>
+        <input type="range" id="rackReverbDecay" min="1" max="10" value="4">
+        <span id="rackReverbDecayValue">4 s</span>
+      </div>
+
+    </div>
+
+    <!-- DELAY -->
+    <div class="panel rack-effect" data-effect="delay">
+
+      <div class="rack-effect-header">
+        <div>
+          <span class="panel-kicker">04 / TIME EFFECTS</span>
+          <h2>Delay</h2>
+        </div>
+
+        <label class="effect-power">
+          <input type="checkbox" id="rackDelayEnabled">
+          <span>ON</span>
+        </label>
+      </div>
+
+      <div class="effect-control">
+        <label for="rackDelayTime">TIME</label>
+        <input type="range" id="rackDelayTime" min="50" max="1000" value="300">
+        <span id="rackDelayTimeValue">300 ms</span>
+      </div>
+
+      <div class="effect-control">
+        <label for="rackDelayFeedback">FEEDBACK</label>
+        <input type="range" id="rackDelayFeedback" min="0" max="90" value="30">
+        <span id="rackDelayFeedbackValue">30%</span>
+      </div>
+
+      <div class="effect-control">
+        <label for="rackDelayMix">WET / DRY</label>
+        <input type="range" id="rackDelayMix" min="0" max="100" value="25">
+        <span id="rackDelayMixValue">25%</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="effects-footer-note">
+    <span>4 EFFECT MODULES</span>
+    <span>INDEPENDENT TRACK PROCESSING</span>
+    <span>AUDIONIX STUDIO</span>
+  </div>
+
+</section>
+
+
+      <section class="page-view secondary-view" id="view-projects">
+        <div class="eyebrow">YOUR WORKSPACE</div>
+        <h1>Your <span>Projects.</span></h1>
+        <p class="page-description">Your music deserves a home.</p>
+        <div class="empty-panel" id="projectsEmpty">
+          <span>▣</span>
+          <strong>No saved sessions yet.</strong>
+          <p>Save your first session to see it here.</p>
+        </div>
+
+<div class="projects-list" id="projectsList"></div>
+      </section>
+
+      <!-- STAGE 12.4: PRESET LIBRARY -->
+
+<section class="page-view secondary-view" id="view-presets">
+
+  <div class="eyebrow">TONE LIBRARY / SOUND COLLECTION</div>
+
+  <h1>Preset <span>Library.</span></h1>
+
+  <p class="page-description">
+    Discover, save and organise your signature sounds.
+  </p>
+
+  <!-- LIBRARY HEADER -->
+
+  <div class="panel preset-library-panel">
+
+    <div class="preset-library-header">
+
+      <div>
+        <div class="panel-kicker">YOUR SOUND COLLECTION</div>
+        <h2>All Presets</h2>
+        <p>Factory sounds and your own custom creations.</p>
+      </div>
+
+      <button id="saveCurrentPresetBtn" class="preset-save-button">
+        ＋ SAVE CURRENT PRESET
+      </button>
+
+    </div>
+
+    <!-- CATEGORY FILTERS -->
+
+    <div class="preset-category-filters" id="presetCategoryFilters">
+
+      <button class="preset-filter active" data-category="all">
+        ALL
+      </button>
+
+      <button class="preset-filter" data-category="guitar">
+        🎸 GUITAR
+      </button>
+
+      <button class="preset-filter" data-category="bass">
+        BASS
+      </button>
+
+      <button class="preset-filter" data-category="vocals">
+        🎤 VOCALS
+      </button>
+
+      <button class="preset-filter" data-category="keyboard">
+        🎹 KEYBOARD
+      </button>
+
+      <button class="preset-filter" data-category="custom">
+        MY PRESETS
+      </button>
+
+    </div>
+
+    <!-- PRESET SEARCH -->
+
+    <div class="preset-search-wrapper">
+
+      <span>⌕</span>
+
+      <input
+        type="text"
+        id="presetSearchInput"
+        placeholder="Search your presets..."
+      >
+
+    </div>
+
+    <!-- PRESET GRID -->
+
+    <div class="preset-library-grid" id="presetLibraryGrid">
+
+      <!-- Preset cards will be generated using JavaScript -->
+
+    </div>
+
+    <div class="preset-empty-state" id="presetEmptyState" hidden>
+
+      <span>✧</span>
+
+      <strong>No presets found.</strong>
+
+      <p>Try another category or search term.</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+      <section class="page-view secondary-view" id="view-settings">
+  <div class="eyebrow">APPLICATION</div>
+  <h1>Studio <span>Settings.</span></h1>
+  <p class="page-description">
+    Configure your creative environment.
+  </p>
+
+  <div class="settings-container">
+
+    <div class="settings-section">
+      <div class="settings-section-header">
+        <h2>Audio Settings</h2>
+        <p>Configure your audio hardware and playback.</p>
+      </div>
+
+      <div class="settings-card">
+        <div class="settings-row">
+          <div>
+            <strong>Audio Input Device</strong>
+            <p>Select your microphone or audio interface.</p>
+          </div>
+          <span>Managed in Studio</span>
+        </div>
+
+        <div class="settings-row">
+          <div>
+            <strong>Sample Rate</strong>
+            <p>Audio processing sample rate.</p>
+          </div>
+          <span>Default</span>
+        </div>
+
+        <div class="settings-row">
+          <div>
+            <strong>Audio Output</strong>
+            <p>Playback through your system output.</p>
+          </div>
+          <span>System Default</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-header">
+        <h2>Recording Settings</h2>
+        <p>Set your default recording preferences.</p>
+      </div>
+
+      <div class="settings-card">
+        <div class="settings-row">
+          <div>
+            <strong>Recording Format</strong>
+            <p>Format used when exporting recordings.</p>
+          </div>
+          <select id="settingsRecordingFormat">
+  <option value="wav" selected>WAV</option>
+  <option value="mp3">MP3</option>
+</select>
+        </div>
+
+        <div class="settings-row">
+          <div>
+            <strong>Recording Quality</strong>
+            <p>Default recording quality.</p>
+          </div>
+          <select id="settingsRecordingQuality">
+  <option value="high" selected>High</option>
+  <option value="medium">Medium</option>
+  <option value="low">Low</option>
+</select>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-header">
+        <h2>Project Settings</h2>
+        <p>Choose your default session configuration.</p>
+      </div>
+
+      <div class="settings-card">
+        <div class="settings-row">
+          <div>
+            <strong>Default Tempo</strong>
+            <p>Starting BPM for new sessions.</p>
+          </div>
+          <input
+  type="number"
+  id="settingsDefaultTempo"
+  min="30"
+  max="300"
+  value="120"
+>
+        </div>
+
+        <div class="settings-row">
+          <div>
+            <strong>Default Loop Length</strong>
+            <p>Starting loop length for new sessions.</p>
+          </div>
+          <select id="settingsDefaultLoopBars">
+  <option value="1">1 Bar</option>
+  <option value="2" selected>2 Bars</option>
+  <option value="4">4 Bars</option>
+  <option value="8">8 Bars</option>
+</select>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-header">
+        <h2>Interface Settings</h2>
+        <p>Customize the AUDIONIX workspace.</p>
+      </div>
+
+      <div class="settings-card">
+        <div class="settings-row">
+          <div>
+            <strong>Appearance</strong>
+            <p>Workspace color theme.</p>
+          </div>
+          <select id="settingsAppearance">
+  <option value="dark" selected>Dark</option>
+  <option value="light">Light</option>
+</select>
+        </div>
+
+        <div class="settings-row">
+          <div>
+            <strong>Metronome</strong>
+            <p>Default metronome preference.</p>
+          </div>
+          <select id="settingsDefaultMetronome">
+  <option value="false" selected>Off</option>
+  <option value="true">On</option>
+</select>
+        </div>
+
+        <div class="settings-row">
+          <div>
+            <strong>Count-In</strong>
+            <p>Default recording count-in preference.</p>
+          </div>
+          <select id="settingsDefaultCountIn">
+  <option value="true" selected>On</option>
+  <option value="false">Off</option>
+</select>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
