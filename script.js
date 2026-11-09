@@ -372,9 +372,10 @@ async function connectAudio() {
           ? { exact: selectedDevice }
           : undefined,
 
-        echoCancellation: false,
-        noiseSuppression: false,
-        autoGainControl: false
+        echoCancellation: true,      // Enabled for mobile hardware routing
+        noiseSuppression: true,
+        autoGainControl: true,       // Allows mobile OS to normalize mic input gain
+        channelCount: 1
 
       }
 
@@ -687,7 +688,16 @@ trebleFilter.connect(reverbNode);
 reverbNode.connect(reverbWet);
 reverbWet.connect(masterGain);
 
-  masterGain.connect(audioContext.destination);
+  // --- ADDED: Mobile hardware output limiter ---
+  const mobileLimiter = audioContext.createDynamicsCompressor();
+  mobileLimiter.threshold.value = -12;
+  mobileLimiter.knee.value = 0;
+  mobileLimiter.ratio.value = 20;
+  mobileLimiter.attack.value = 0.001;
+  mobileLimiter.release.value = 0.1;
+
+  masterGain.connect(mobileLimiter);
+  mobileLimiter.connect(audioContext.destination);
 
   // Send the guitar input into the effects chain.
   audioSource.connect(effectInput);
