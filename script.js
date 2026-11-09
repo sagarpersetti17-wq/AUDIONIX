@@ -2174,7 +2174,13 @@ async function beginLoopRecording(targetDuration) {
       audioContext.createMediaStreamDestination();
 
     recordingSource = effectInput || audioSource;
-    recordingSource.connect(destination);
+
+    // --- ADDED: Boost recording volume into the recorder ---
+    const recordBoostNode = audioContext.createGain();
+    recordBoostNode.gain.value = 4.0; // Boosts the recorded layer's volume
+
+    recordingSource.connect(recordBoostNode);
+    recordBoostNode.connect(destination);
 
     activeDestination = destination;
     recordingTrack = track;
