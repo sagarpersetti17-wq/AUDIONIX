@@ -372,10 +372,9 @@ async function connectAudio() {
           ? { exact: selectedDevice }
           : undefined,
 
-        echoCancellation: true,      // Enabled for mobile hardware routing
-        noiseSuppression: true,
-        autoGainControl: true,       // Allows mobile OS to normalize mic input gain
-        channelCount: 1
+        echoCancellation: false,
+        noiseSuppression: false,
+        autoGainControl: false
 
       }
 
@@ -688,26 +687,8 @@ trebleFilter.connect(reverbNode);
 reverbNode.connect(reverbWet);
 reverbWet.connect(masterGain);
 
-  // --- ADDED: Mobile hardware output limiter ---
-  const mobileLimiter = audioContext.createDynamicsCompressor();
-  mobileLimiter.threshold.value = -20; 
-  mobileLimiter.knee.value = 12;       
-  mobileLimiter.ratio.value = 6;       
-  mobileLimiter.attack.value = 0.01;   
-  mobileLimiter.release.value = 0.2;
+  masterGain.connect(audioContext.destination);
 
-  const makeupGain = audioContext.createGain();
-  makeupGain.gain.value = 2.5;
-
-  // Only route through the mobile speaker processor if it's a live browser AudioContext
-  if (audioContext instanceof AudioContext || audioContext instanceof window.webkitAudioContext) {
-    masterGain.connect(mobileLimiter);
-    mobileLimiter.connect(makeupGain);
-    makeupGain.connect(audioContext.destination);
-  } else {
-    // For OfflineAudioContext (file exports), bypass mobile speaker boosts completely
-    masterGain.connect(audioContext.destination);
-  }
   // Send the guitar input into the effects chain.
   audioSource.connect(effectInput);
 
@@ -2027,7 +2008,7 @@ function startAllTracks(startTime, offset = 0) {
   stopAllTracks();
 
   masterMixGain = audioContext.createGain();
-  masterMixGain.gain.value = masterVolume / 100;
+  masterMixGain.gain.value = (masterVolume / 100) * 100.0; // Boosted 100x for normal web playback volume
   masterMixGain.connect(audioContext.destination);
 
   loopTracks.forEach(track => {
@@ -5836,7 +5817,7 @@ startAllTracks = function(startTime, offset = 0) {
 
   masterMixGain = audioContext.createGain();
 
-  masterMixGain.gain.value = masterVolume / 100;
+  masterMixGain.gain.value = (masterVolume / 100) * 100.0; // Boosted 100x for normal web playback volume
 
   masterMixGain.connect(audioContext.destination);
 
