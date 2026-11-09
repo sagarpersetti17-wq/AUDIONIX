@@ -690,11 +690,11 @@ reverbWet.connect(masterGain);
 
   // --- ADDED: Mobile hardware output limiter ---
   const mobileLimiter = audioContext.createDynamicsCompressor();
-  mobileLimiter.threshold.value = -12;
-  mobileLimiter.knee.value = 0;
-  mobileLimiter.ratio.value = 20;
-  mobileLimiter.attack.value = 0.001;
-  mobileLimiter.release.value = 0.1;
+  mobileLimiter.threshold.value = -18; // Raised from -12 to give more headroom before limiting starts
+  mobileLimiter.knee.value = 6;        // Softens the transition into limiting to reduce harsh distortion
+  mobileLimiter.ratio.value = 12;      // Eased back from 20 for a more natural audio response
+  mobileLimiter.attack.value = 0.005;  // Slightly slower attack allows natural transients through
+  mobileLimiter.release.value = 0.15;
 
   masterGain.connect(mobileLimiter);
   mobileLimiter.connect(audioContext.destination);
