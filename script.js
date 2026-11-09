@@ -696,13 +696,18 @@ reverbWet.connect(masterGain);
   mobileLimiter.attack.value = 0.01;   
   mobileLimiter.release.value = 0.2;
 
-  // --- ADDED: Makeup gain to restore volume cleanly ---
   const makeupGain = audioContext.createGain();
-  makeupGain.gain.value = 2.5; // Adjust between 2.0 and 3.5 to hit your desired loudness
+  makeupGain.gain.value = 2.5;
 
-  masterGain.connect(mobileLimiter);
-  mobileLimiter.connect(makeupGain);
-  makeupGain.connect(audioContext.destination);
+  // Only route through the mobile speaker processor if it's a live browser AudioContext
+  if (audioContext instanceof AudioContext || audioContext instanceof window.webkitAudioContext) {
+    masterGain.connect(mobileLimiter);
+    mobileLimiter.connect(makeupGain);
+    makeupGain.connect(audioContext.destination);
+  } else {
+    // For OfflineAudioContext (file exports), bypass mobile speaker boosts completely
+    masterGain.connect(audioContext.destination);
+  }
   // Send the guitar input into the effects chain.
   audioSource.connect(effectInput);
 
@@ -2022,7 +2027,7 @@ function startAllTracks(startTime, offset = 0) {
   stopAllTracks();
 
   masterMixGain = audioContext.createGain();
-  masterMixGain.gain.value = (masterVolume / 100) * 100.0; // Boosted 100x for normal web playback volume
+  masterMixGain.gain.value = masterVolume / 100;
   masterMixGain.connect(audioContext.destination);
 
   loopTracks.forEach(track => {
@@ -5831,7 +5836,7 @@ startAllTracks = function(startTime, offset = 0) {
 
   masterMixGain = audioContext.createGain();
 
-  masterMixGain.gain.value = (masterVolume / 100) * 100.0; // Boosted 100x for normal web playback volume
+  masterMixGain.gain.value = masterVolume / 100;
 
   masterMixGain.connect(audioContext.destination);
 
