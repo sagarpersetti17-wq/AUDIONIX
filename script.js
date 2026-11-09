@@ -5189,7 +5189,7 @@ function createDefaultTrackEffects() {
     },
 
     compressor: {
-      enabled: false,
+      enabled: true,
       threshold: -24,
       ratio: 4,
       attack: 10,
@@ -5315,6 +5315,11 @@ function buildTrackEffectsChain(context, source, savedSettings) {
   // COMPRESSOR
 
   const compressor = context.createDynamicsCompressor();
+  // --- ADDED: Mobile volume normalization ---
+  compressor.threshold.value = -30; // Lower threshold to catch quiet mobile audio
+  compressor.ratio.value = 12;      // Higher compression ratio to boost overall loudness
+  compressor.attack.value = 0.003;
+  compressor.release.value = 0.25;
 
 
   // REVERB
