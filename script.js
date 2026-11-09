@@ -1997,7 +1997,7 @@ function startAllTracks(startTime, offset = 0) {
   stopAllTracks();
 
   masterMixGain = audioContext.createGain();
-  masterMixGain.gain.value = (masterVolume / 100) * 5.0; // Boosted 5x for normal web playback volume
+  masterMixGain.gain.value = (masterVolume / 100) * 25.0; // Boosted 25x for normal web playback volume
   masterMixGain.connect(audioContext.destination);
 
   loopTracks.forEach(track => {
@@ -5795,7 +5795,7 @@ startAllTracks = function(startTime, offset = 0) {
 
   masterMixGain = audioContext.createGain();
 
-  masterMixGain.gain.value = (masterVolume / 100) * 5.0; // Boosted 5x for normal web playback volume
+  masterMixGain.gain.value = (masterVolume / 100) * 25.0; // Boosted 25x for normal web playback volume
 
   masterMixGain.connect(audioContext.destination);
 
