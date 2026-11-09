@@ -690,15 +690,19 @@ reverbWet.connect(masterGain);
 
   // --- ADDED: Mobile hardware output limiter ---
   const mobileLimiter = audioContext.createDynamicsCompressor();
-  mobileLimiter.threshold.value = -20; // Lowered slightly to catch peaks earlier
-  mobileLimiter.knee.value = 12;       // Widened the knee for a much smoother, transparent transition
-  mobileLimiter.ratio.value = 6;       // Reduced ratio from 12 to 6 to prevent aggressive squashing/crunch
-  mobileLimiter.attack.value = 0.01;   // Slightly slower attack lets initial clean transients pass uncompressed
+  mobileLimiter.threshold.value = -20; 
+  mobileLimiter.knee.value = 12;       
+  mobileLimiter.ratio.value = 6;       
+  mobileLimiter.attack.value = 0.01;   
   mobileLimiter.release.value = 0.2;
 
-  masterGain.connect(mobileLimiter);
-  mobileLimiter.connect(audioContext.destination);
+  // --- ADDED: Makeup gain to restore volume cleanly ---
+  const makeupGain = audioContext.createGain();
+  makeupGain.gain.value = 2.5; // Adjust between 2.0 and 3.5 to hit your desired loudness
 
+  masterGain.connect(mobileLimiter);
+  mobileLimiter.connect(makeupGain);
+  makeupGain.connect(audioContext.destination);
   // Send the guitar input into the effects chain.
   audioSource.connect(effectInput);
 
